@@ -1,0 +1,93 @@
+<html>
+<head><title>LibrarySearch Options</title>
+<style>
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: blue;
+}
+
+h1 {
+  font-size: 156%;
+  font-weight: bold;
+}
+
+button {
+  font-size: 104%;
+}
+
+.incognitoWarning {
+  margin: 0.75em 0;
+  display: none;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease-out;
+}
+
+.incognitoWarning .yellow {
+  background:#fff299;
+  padding:2px 5px;
+  border-radius:3px;
+}
+</style>
+
+
+</head>
+<script type="text/javascript">
+
+// Saves options to localStorage.
+function save_options() {
+  var select = document.getElementById("localLibrary");
+  var localLibrary = select.children[select.selectedIndex].value;
+  localStorage["localLibrary"] = localLibrary;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var favorite = localStorage["localLibrary"];
+  if (!favorite) {
+    return;
+  }
+  var select = document.getElementById("localLibrary");
+  for (var i = 0; i < select.children.length; i++) {
+    var child = select.children[i];
+    if (child.value == favorite) {
+      child.selected = "true";
+      break;
+    }
+  }
+}
+
+</script>
+
+<body onload="restore_options()">
+
+<h1>LibrarySearch Options</h1>
+
+<p>Local Library:</p>
+
+<select id="localLibrary">
+    <option value="http://encore.sfpl.org/iii/encore/search?search_btn=&amp;formids=target&amp;lang=eng&amp;suite=def&amp;reservedids=lang%2Csuite&amp;submitmode=&amp;submitname=&amp;target=" selected="selected">San Francisco Public Library (CA, USA)</option>
+    <option value="http://catalog.oaklandlibrary.org/search/X?">Oakland Public Library (CA, USA)</option>
+    <option value="http://encore.berkeley-public.org/iii/encore/search?formids=target&amp;lang=eng&amp;suite=def&amp;reservedids=lang%2Csuite&amp;submitmode=&amp;submitname=&amp;target=">Berkeley Public Library (CA, USA)</option>
+    <option value="http://catalog.plsinfo.org/search/a?searchtype=Y&amp;SORT=D&amp;searchscope=1&amp;searcharg=">Peninsula Library System (San Mateo County, CA, USA)</option>
+    <option value="http://catalog.sjlibrary.org/search~S1/X?">SJ Library (San Jose Public/San Jose State, CA, USA)</option>
+    <option value="http://libweb.city.palo-alto.ca.us/ipac20/ipac.jsp?menu=search&amp;aspect=subtab13&amp;npp=15&amp;ipp=20&amp;spp=20&amp;profile=pacl&amp;ri=&amp;index=.GW&amp;term=">Palo Alto City Library (CA, USA)</option>
+    <option value="http://library.hayward-ca.gov/search~S0/?searchtype=X&amp;searcharg=test&amp;sortdropdown=-&amp;SORT=DZ&amp;extended=0&amp;SUBMIT=Search&amp;searchlimits=&amp;searchorigarg=X<">Hayward Public Library (CA, USA)</option>
+</select>
+
+<div id="status"></div>
+
+<br />
+<button onclick="save_options()">Save</button>
+</body>
+

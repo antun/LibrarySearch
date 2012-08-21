@@ -1,0 +1,17 @@
+{
+  "name": "LibrarySearch",
+  "version": "1.0",
+  "description": "The first extension that I made.",
+  "permissions": [
+    "contextMenus",
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "icons": {
+    "16": "LibrarySearchIcon-16.png",
+    "24": "LibrarySearchIcon-24.png",
+    "48": "LibrarySearchIcon-48.png"
+  },
+  "background_page": "background.html",
+  "options_page": "options.html"
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<script>
+safari.application.addEventListener("command", doSearch, false);
+safari.application.addEventListener("validate", setupRightClickMenu, false);
+
+function doSearch(event)
+{
+    if (event.command !== "librarySearch")
+        return;
+    var query = event.userInfo;
+    // URL-encode - replace whitespace with plus.
+    query = query.replace(/\s+/g,"+");
+    var localLibraryUrl = safari.extension.settings.localLibrary;
+    var rUrl = localLibraryUrl + query;
+    var tab = safari.application.activeBrowserWindow.openTab("foreground");
+    tab.url = rUrl;
+    
+}
+
+function setupRightClickMenu(event)
+{
+    var contextText = event.userInfo;
+    if (event.command !== "librarySearch" || contextText===undefined) {
+        return;
+    }
+    if (contextText.length == 0 || !contextText) {
+        event.target.disabled = true;
+    }
+
+    // Shorten the search term for display purposes only.
+    if (contextText.length > 25) {
+        contextText = contextText.substr(0,25);
+
+        // Strip leading and trailing whitespace.
+        contextText = contextText.replace(/^\s+|\s+$/g,"");
+        contextText = contextText + '...'
+    }
+    event.target.title = 'Search for "'+contextText+'" at my local library'; 
+}
+
+</script>

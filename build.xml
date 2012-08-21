@@ -1,0 +1,52 @@
+<project basedir=".">
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+    <description>Use to setup extensions.</description>
+
+    <property file="build.properties" />
+
+    <!-- TODO: Add check that browser is set -->
+    <property name="browser" value="${browser}" />
+
+    <echo>Using browser: ${browser}</echo>
+
+    <target name="init">
+    </target>
+
+    <target name="setup-browser-env">
+        <!-- Copy resources -->
+
+        <switch value="${browser}">
+            <case value="chrome">
+                <echo message="Chrome pathway." />
+                <property name="working.dir" value="LibrarySearch.chrome" />
+                <copy file="common/resources/LibrarySearchIcon-16.png" todir="${working.dir}"/>
+                <copy file="common/resources/LibrarySearchIcon-24.png" todir="${working.dir}"/>
+                <copy file="common/resources/LibrarySearchIcon-48.png" todir="${working.dir}"/>
+
+            </case>
+        </switch> 
+
+    </target>
+
+    <target name="clean">
+        <switch value="${browser}">
+            <case value="chrome">
+                <property name="working.dir" value="LibrarySearch.chrome" />
+                <delete file="${working.dir}/LibrarySearchIcon-16.png" />
+                <delete file="${working.dir}/LibrarySearchIcon-24.png" />
+                <delete file="${working.dir}/LibrarySearchIcon-48.png" />
+            </case>
+        </switch>
+    </target>
+
+
+        <!--
+        <if>
+            <equals arg1="abc" arg2="abc" />
+            <then>
+                <echo>If works</echo>
+            </then>
+        </if>
+        -->
+
+</project>
