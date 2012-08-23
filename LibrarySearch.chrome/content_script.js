@@ -5,5 +5,5 @@ function genericOnClick(info, tab) {
 chrome.tabs.create({url: 'http://encore.sfpl.org/iii/encore/search?search_btn=&formids=target&lang=eng&suite=def&reservedids=lang%2Csuite&submitmode=&submitname=&target=' + selectionText});
 }
 
-var id = chrome.contextMenus.create({title: "Search for '%s' at my local library", contexts:["selection"], onclick: genericOnClick});
+var id = chrome.contextMenus.create({title: "Search for '%s' at my local library", contexts:["selection"], "onclick": genericOnClick});
 

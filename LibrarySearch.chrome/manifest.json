@@ -1,17 +1,20 @@
 {
   "name": "LibrarySearch",
-  "version": "1.0",
-  "description": "The first extension that I made.",
+  "version": "1.1",
+  "manifest_version": 2,
+  "description": "Adds a right-click menu to search your local public library for the selected text.",
   "permissions": [
     "contextMenus",
     "tabs", "http://*/*", "https://*/*"
   ],
+  "background": {
+    "scripts": ["content_script.js"]
+  },
   "icons": {
     "16": "LibrarySearchIcon-16.png",
     "24": "LibrarySearchIcon-24.png",
     "48": "LibrarySearchIcon-48.png"
   },
-  "background_page": "background.html",
   "options_page": "options.html"
 }
 
