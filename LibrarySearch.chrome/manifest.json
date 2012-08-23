@@ -8,7 +8,7 @@
     "tabs", "http://*/*", "https://*/*"
   ],
   "background": {
-    "scripts": ["content_script.js"]
+    "scripts": ["content_script.js", "options.js"]
   },
   "icons": {
     "16": "LibrarySearchIcon-16.png",

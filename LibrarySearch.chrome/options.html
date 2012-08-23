@@ -35,41 +35,9 @@ button {
 
 
 </head>
-<script type="text/javascript">
+<script type="text/javascript" src="options.js"></script>
 
-// Saves options to localStorage.
-function save_options() {
-  var select = document.getElementById("localLibrary");
-  var localLibrary = select.children[select.selectedIndex].value;
-  localStorage["localLibrary"] = localLibrary;
-
-  // Update status to let user know options were saved.
-  var status = document.getElementById("status");
-  status.innerHTML = "Options Saved.";
-  setTimeout(function() {
-    status.innerHTML = "";
-  }, 750);
-}
-
-// Restores select box state to saved value from localStorage.
-function restore_options() {
-  var favorite = localStorage["localLibrary"];
-  if (!favorite) {
-    return;
-  }
-  var select = document.getElementById("localLibrary");
-  for (var i = 0; i < select.children.length; i++) {
-    var child = select.children[i];
-    if (child.value == favorite) {
-      child.selected = "true";
-      break;
-    }
-  }
-}
-
-</script>
-
-<body onload="restore_options()">
+<body>
 
 <h1>LibrarySearch Options</h1>
 
@@ -88,6 +56,6 @@ function restore_options() {
 <div id="status"></div>
 
 <br />
-<button onclick="save_options()">Save</button>
+<button id="saveButton">Save</button>
 </body>
-
+</html>
