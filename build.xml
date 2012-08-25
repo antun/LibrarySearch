@@ -35,7 +35,6 @@
                 <copy file="common/resources/LibrarySearchIcon-16.png" todir="${working.dir}"/>
                 <copy file="common/resources/LibrarySearchIcon-24.png" todir="${working.dir}"/>
                 <copy file="common/resources/LibrarySearchIcon-48.png" todir="${working.dir}"/>
-                <zip destfile="${build.dir}/LibrarySearch.chrome.zip" basedir="${build.dir}/LibrarySearch.chrome" />
 
                 <for list="${libraries.rawtext}" delimiter="${line.separator}" param="library">
                     <sequential>
@@ -56,6 +55,7 @@
 
                     </sequential>
                 </for>
+                <zip destfile="${build.dir}/LibrarySearch.chrome.zip" basedir="${build.dir}/LibrarySearch.chrome" />
             </case> <!-- End chrome -->
         </switch> 
     </target>
