@@ -4,6 +4,9 @@
 
     <property file="build.properties" />
 
+    <loadfile property="libraries.rawtext" srcFile="libraries.properties" />
+
+
     <!-- TODO: Add check that browser is set -->
     <property name="browser" value="${browser}" />
     <property name="build.dir" value="_build" />
@@ -23,14 +26,38 @@
                 <mkdir dir="${working.dir}" />
                 <copy todir="${working.dir}">
                     <fileset dir="LibrarySearch.chrome" />
+                    <filterset>
+                        <filter token="EXTENSION_NAME" value="${extension_name}" />
+                        <filter token="EXTENSION_VERSION" value="${extension_version}" />
+                        <filter token="EXTENSION_DESCRIPTION" value="${extension_description}" />
+                    </filterset>
                 </copy>
                 <copy file="common/resources/LibrarySearchIcon-16.png" todir="${working.dir}"/>
                 <copy file="common/resources/LibrarySearchIcon-24.png" todir="${working.dir}"/>
                 <copy file="common/resources/LibrarySearchIcon-48.png" todir="${working.dir}"/>
+                <zip destfile="${build.dir}/LibrarySearch.chrome.zip" basedir="${build.dir}/LibrarySearch.chrome" />
 
-            </case>
+                <for list="${libraries.rawtext}" delimiter="${line.separator}" param="library">
+                    <sequential>
+                        <propertyregex property="name" override="true"
+                                        input="@{library}"
+                                        regexp="(.*)XXX(.*)"
+                                        select="\1"
+                                        casesensitive="true" />
+                        <propertyregex property="url" override="true"
+                                        input="@{library}"
+                                        regexp="(.*)XXX(.*)"
+                                        select="\2"
+                                        casesensitive="true" />
+                        <var name="option.html" 
+                             value="&lt;option value=&quot;${url}&quot;&gt;${name}&lt;/option&gt;${line.separator}&lt;!-- Library Options --&gt;" />
+                        <replace file="${working.dir}/options.html" token="&lt;!-- Library Options --&gt;"
+                                 value="${option.html}" />
+
+                    </sequential>
+                </for>
+            </case> <!-- End chrome -->
         </switch> 
-
     </target>
 
     <target name="clean">
