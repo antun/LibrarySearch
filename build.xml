@@ -4,19 +4,20 @@
 
     <property file="build.properties" />
 
-    <loadfile property="libraries.rawtext" srcFile="libraries.properties" />
-
 
     <!-- TODO: Add check that browser is set -->
     <property name="browser" value="${browser}" />
     <property name="build.dir" value="_build" />
 
     <echo>Using browser: ${browser}</echo>
+    <echo>Build dir: ${build.dir}</echo>
 
     <target name="init">
+        <mkdir dir="${build.dir}" />
+        <xslt style="sortLibraries.xsl" in="libraries.properties.xml" out="${build.dir}/libraries.sorted.xml"/>
     </target>
 
-    <target name="build">
+    <target name="build" depends="init">
         <!-- Copy resources -->
 
         <switch value="${browser}">
@@ -24,37 +25,25 @@
                 <echo message="Chrome pathway." />
                 <property name="working.dir" value="${build.dir}/LibrarySearch.chrome" />
                 <mkdir dir="${working.dir}" />
+
+                <xslt style="options.chrome.xsl" 
+                      in="${build.dir}/libraries.sorted.xml" out="${build.dir}/options.chrome.html"/>
+                <loadfile property="options.chrome.html.rawtext" srcFile="${build.dir}/options.chrome.html" />
+
                 <copy todir="${working.dir}">
                     <fileset dir="LibrarySearch.chrome" />
                     <filterset>
                         <filter token="EXTENSION_NAME" value="${extension_name}" />
                         <filter token="EXTENSION_VERSION" value="${extension_version}" />
                         <filter token="EXTENSION_DESCRIPTION" value="${extension_description}" />
+                        <filter token="CHROME_OPTIONS_HTML" value="${options.chrome.html.rawtext}" />
                     </filterset>
                 </copy>
                 <copy file="common/resources/LibrarySearchIcon-16.png" todir="${working.dir}"/>
                 <copy file="common/resources/LibrarySearchIcon-24.png" todir="${working.dir}"/>
                 <copy file="common/resources/LibrarySearchIcon-48.png" todir="${working.dir}"/>
 
-                <for list="${libraries.rawtext}" delimiter="${line.separator}" param="library">
-                    <sequential>
-                        <propertyregex property="name" override="true"
-                                        input="@{library}"
-                                        regexp="(.*)XXX(.*)"
-                                        select="\1"
-                                        casesensitive="true" />
-                        <propertyregex property="url" override="true"
-                                        input="@{library}"
-                                        regexp="(.*)XXX(.*)"
-                                        select="\2"
-                                        casesensitive="true" />
-                        <var name="option.html" 
-                             value="&lt;option value=&quot;${url}&quot;&gt;${name}&lt;/option&gt;${line.separator}&lt;!-- Library Options --&gt;" />
-                        <replace file="${working.dir}/options.html" token="&lt;!-- Library Options --&gt;"
-                                 value="${option.html}" />
 
-                    </sequential>
-                </for>
                 <zip destfile="${build.dir}/LibrarySearch.chrome.zip" basedir="${build.dir}/LibrarySearch.chrome" />
             </case> <!-- End chrome -->
         </switch> 
