@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>Antun Karlovac</string>
+	<string>@EXTENSION_AUTHOR@</string>
 	<key>CFBundleDisplayName</key>
-	<string>LibrarySearch</string>
+	<string>@EXTENSION_NAME@</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.antunkarlovac.LibrarySearch</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>@EXTENSION_VERSION@</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
@@ -55,8 +55,8 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://www.antunkarlovac.com/software/extensions/librarysearch/files</string>
+	<string>@SAFARI_UPDATE_URL@</string>
 	<key>Website</key>
-	<string>http://www.antunkarlovac.com/software/extensions/librarysearch/</string>
+	<string>@EXTENSION_WEBSITE@</string>
 </dict>
 </plist>

@@ -44,8 +44,40 @@
                 <copy file="common/resources/LibrarySearchIcon-48.png" todir="${working.dir}"/>
 
 
-                <zip destfile="${build.dir}/LibrarySearch.chrome.zip" basedir="${build.dir}/LibrarySearch.chrome" />
+                <zip destfile="${build.dir}/LibrarySearch.chrome.zip" 
+                     basedir="${build.dir}/LibrarySearch.chrome" />
             </case> <!-- End chrome -->
+
+            <case value="safari">
+                <echo message="Safari pathway." />
+                <property name="working.dir" value="${build.dir}/LibrarySearch.safari" />
+                <mkdir dir="${working.dir}" />
+                <xslt style="options.safari.keys.xsl" 
+                      in="${build.dir}/libraries.sorted.xml" out="${build.dir}/options.safari.keys.html"/>
+                <xslt style="options.safari.values.xsl" 
+                      in="${build.dir}/libraries.sorted.xml" out="${build.dir}/options.safari.values.html"/>
+                <loadfile property="options.safari.keys.html.rawtext" srcFile="${build.dir}/options.safari.keys.html" />
+                <loadfile property="options.safari.values.html.rawtext" srcFile="${build.dir}/options.safari.values.html" />
+                <copy todir="${working.dir}">
+                    <fileset dir="LibrarySearch.safariextension" />
+                    <filterset>
+                        <filter token="EXTENSION_NAME" value="${extension_name}" />
+                        <filter token="EXTENSION_VERSION" value="${extension_version}" />
+                        <filter token="EXTENSION_DESCRIPTION" value="${extension_description}" />
+                        <filter token="EXTENSION_AUTHOR" value="${extension_author}" />
+                        <filter token="EXTENSION_WEBSITE" value="${extension_website}" />
+                        <filter token="SAFARI_BUNDLE_IDENTIFIER" value="${safari_bundle_identifier}" />
+                        <filter token="SAFARI_UPDATE_URL" value="${safari_update_url}" />
+                        <filter token="SAFARI_FILE_URL" value="${safari_file_url}" />
+                        <filter token="SAFARI_OPTIONS_KEYS_HTML" value="${options.safari.keys.html.rawtext}" />
+                        <filter token="SAFARI_OPTIONS_VALUES_HTML" value="${options.safari.values.html.rawtext}" />
+                        <filter token="SAFARI_DEVELOPER_ID" value="${safari_developer_id}" />
+                    </filterset>
+                </copy>
+
+                <echo message="Completed building Safari. You will need to use the the Safari Extension builder to package the extension located at ${build.dir}/LibrarySearch.safari." />
+            </case> <!-- End safari -->
+
         </switch> 
     </target>
 

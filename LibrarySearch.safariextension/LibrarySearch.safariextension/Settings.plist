@@ -11,25 +11,13 @@
 		<string>Local Library</string>
 		<key>Titles</key>
 		<array>
-			<string>San Francisco Public Library (CA, USA)</string>
-			<string>Oakland Public Library (CA, USA)</string>
-			<string>Berkeley Public Library (CA, USA)</string>
-			<string>Peninsula Library System (San Mateo County, CA, USA)</string>
-			<string>SJ Library (San Jose Public/San Jose State, CA, USA)</string>
-			<string>Palo Alto City Library (CA, USA)</string>
-			<string>Hayward Public Library (CA, USA)</string>
+			@SAFARI_OPTIONS_KEYS_HTML@
 		</array>
 		<key>Type</key>
 		<string>ListBox</string>
 		<key>Values</key>
 		<array>
-			<string>http://encore.sfpl.org/iii/encore/search?search_btn=&amp;formids=target&amp;lang=eng&amp;suite=def&amp;reservedids=lang%2Csuite&amp;submitmode=&amp;submitname=&amp;target=</string>
-			<string>http://catalog.oaklandlibrary.org/search/X?</string>
-			<string>http://encore.berkeley-public.org/iii/encore/search?formids=target&amp;lang=eng&amp;suite=def&amp;reservedids=lang%2Csuite&amp;submitmode=&amp;submitname=&amp;target=</string>
-			<string>http://catalog.plsinfo.org/search/a?searchtype=Y&amp;SORT=D&amp;searchscope=1&amp;searcharg=</string>
-			<string>http://catalog.sjlibrary.org/search~S1/X?</string>
-			<string>http://libweb.city.palo-alto.ca.us/ipac20/ipac.jsp?menu=search&amp;aspect=subtab13&amp;npp=15&amp;ipp=20&amp;spp=20&amp;profile=pacl&amp;ri=&amp;index=.GW&amp;term=</string>
-			<string>http://library.hayward-ca.gov/search~S0/?searchtype=X&amp;searcharg=test&amp;sortdropdown=-&amp;SORT=DZ&amp;extended=0&amp;SUBMIT=Search&amp;searchlimits=&amp;searchorigarg=X</string>
+			@SAFARI_OPTIONS_VALUES_HTML@
 		</array>
 	</dict>
 </array>
