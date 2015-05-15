@@ -32,6 +32,10 @@
         <url>http://catalog.oaklandlibrary.org/search/X?</url>
     </library>
     <library>
+        <name>OC Public Libraries (CA, USA)</name>
+        <url>http://catalog.ocpl.org/client/en_US/default/search/results/?ln=en_US&amp;rw=0&amp;q=</url>
+    </library>
+    <library>
         <name>Palo Alto City Library (CA, USA)</name>
         <url>http://libweb.city.palo-alto.ca.us/ipac20/ipac.jsp?menu=search&amp;aspect=subtab13&amp;npp=15&amp;ipp=20&amp;spp=20&amp;profile=pacl&amp;ri=&amp;index=.GW&amp;term=</url>
     </library>
