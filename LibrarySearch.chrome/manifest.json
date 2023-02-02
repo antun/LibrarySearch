@@ -5,7 +5,7 @@
   "description": "@EXTENSION_DESCRIPTION@",
   "permissions": [
     "contextMenus",
-    "tabs", "http://*/*", "https://*/*"
+    "http://*/*", "https://*/*"
   ],
   "background": {
     "scripts": ["content_script.js", "options.js"]

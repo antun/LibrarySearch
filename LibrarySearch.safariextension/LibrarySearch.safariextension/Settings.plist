@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>DefaultValue</key>
-		<string>http://encore.sfpl.org/iii/encore/search?search_btn=&amp;formids=target&amp;lang=eng&amp;suite=def&amp;reservedids=lang%2Csuite&amp;submitmode=&amp;submitname=&amp;target=</string>
+		<string>https://sfpl.bibliocommons.com/v2/search?query=</string>
 		<key>Key</key>
 		<string>localLibrary</string>
 		<key>Title</key>
